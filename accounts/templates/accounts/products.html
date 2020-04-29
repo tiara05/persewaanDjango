@@ -1,0 +1,42 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+		<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Macam-Macam Products Sepeda</h5>
+				</div>
+				<div class="card card-body">
+				<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_product' %}" >Create Product</a>
+				<br>
+					<table class="table">
+						<tr>
+							<th>Product</th>
+							<th>Harga Sewa 1 Hari</th>
+							<th>Harga Sewa 1 Minggu</th>
+							<th>Harga Sewa 1 Bulan</th>
+							<th>Aksi</th>
+						</tr>
+
+						{% for prod in products %}
+							<tr>
+								<td>{{prod.name}}</td> 
+								<td>{{prod.price}}</td>
+								<td>{{prod.priceweek}}</td>
+								<td>{{prod.pricemonth}}</td>
+								<td><a class="btn btn-sm btn-info" href="{% url 'update_prod' prod.id %}">Update</a><a style="color:white">aaa<</a>
+								<a class="btn btn-sm btn-danger" href="{% url 'delete_prod' prod.id %}">Delete</a></td>
+
+							</tr>
+						{% endfor %}
+						
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock content %}

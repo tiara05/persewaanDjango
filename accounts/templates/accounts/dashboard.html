@@ -1,0 +1,75 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+{%  include 'accounts/status.html' %}
+
+<br>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>CUSTOMER RENTAL</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_customer' %}" >Create Customer</a>
+			<br>
+			<table class="table table-sm">
+				<tr>
+					
+					<th>Customer</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Aksi</th>
+				</tr>
+
+				{% for customer in customers %}
+					<tr>
+						
+						<td>{{customer.name}}</td>
+						<td>{{customer.phone}}</td>
+						<td>{{customer.email}}</td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'customer' customer.id %}">View</a></td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>ORDER RENTAL SEPEDA</h5>
+		<hr>
+		<div class="card card-body">
+			{% comment %} <a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_order' %}">Create Order</a> {% endcomment %}
+			<table class="table table-sm">
+				<tr>
+					<th>Customer</th>
+					<th>Product</th>
+					<th>Date Orderd</th>
+					<th>Harga Total</th>
+					<th>Status</th>
+					<th>Aksi</th>
+					
+				</tr>
+
+				{% for order in orders %}
+					<tr>
+						<td>{{order.customer}}</td>
+						<td>{{order.product.name}}</td>
+						<td>{{order.pinjam}}</td>
+						<td>{{order.total}}</td>
+						<td>{{order.status}}</td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a>
+						<a class="btn btn-sm btn-warning" href="{% url 'nota' order.id %}">Nota</a></td>
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
+
